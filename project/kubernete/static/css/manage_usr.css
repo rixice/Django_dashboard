@@ -1,0 +1,27 @@
+/* manage_usr.css */
+body{background: url("/static/image/wormz.png"); user-select: none;}
+a{text-decoration: none; color: #00CACA;}
+
+#manage_usr{margin: 80px auto; width: 600px; height: 650px; background: white; text-align: center;
+	box-shadow: darkgrey 5px 5px 10px 5px ;}
+
+#p1{font-size: 36px; font-family: "microsoft yahei"; margin-top: 0px; margin-bottom: auto;}
+#p2{font-size: 14px;}
+.header{font-size: 16px; margin-left: -460px; margin-top: -20px}
+#header_name{font-size: 13px; margin-left: -448px;}
+#confirm_ps{font-size: 13px; margin-left: -435px;}
+
+#btn{margin-top: 20px; margin-left: 5px; border: 0px; border-radius: 8px; width: 125px; height: 49px;
+		cursor: pointer;/*设置鼠标悬浮时，鼠标的样式*/
+		background-color: gray;}
+#btn:hover{background-color: skyblue; transition: 0.7s; color: white}
+#btn:not(:hover){transition: 1s;}
+
+.usr_text{color: black; font-size: 20px; text-align: center}
+
+select{border-top: 0px; border-left: 0px; border-right: 0px; border-bottom: 0px; margin-left: 10px;}
+
+input{border-bottom: 1px solid #000; border-top: 0px; border-left: 0px; border-right: 0px;
+	background-color: white; outline: 0; width: 80%;}
+input:focus{border-bottom: 1px solid #00CACA; transition: 0.3s;}
+input:not(:focus){transition: 0.3s;}

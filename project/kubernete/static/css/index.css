@@ -1,0 +1,156 @@
+/* index.css */
+#main{background-color: white; width: 1510px; height: 710px; background-size: 100%; z-index: 2; user-select: none; box-shadow: 10px 10px 15px 10px}
+a{text-decoration: none; color: #9D9D9D}
+
+#left_menu{background: url('/static/image/b_w.jpg'); width: 16%; height: 100%; float: left; box-shadow: 1px 1px 5px 1px}
+#left_table{float: left; margin-top: 30px; margin-left: 30px;}
+
+td{font-size: 20px; color: #9D9D9D; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 40px; position: relative;}
+
+.choice{top: 50px; height: 40px; width: 210px; position: relative; cursor: pointer; float: left; padding-top: 10px; left: -28px; padding-left: 28px;
+    margin-top: 5px;}
+.choice:hover{transition: 0.5s; background-color: rgba(25, 25, 112, 0.4);}
+.choice:not(:hover){transition: 0.5s;}
+.ch td:hover a{color: white; transition: 0.5s}
+.ch td:not(:hover) a{transition: 0.5s;}
+
+#top_menu{background: url('/static/image/b_w.jpg'); width: 100%; height: 10%; float: top; box-shadow: 1px 1px 5px 1px}
+#usr_info{float: right; width: 60%; height: 100%; margin-top: 0px;}
+.usr_show{color: white; top: 0px; text-align: center}
+.usr_show:hover{transition: 0.5s; color: #D2691E; background-color: white; box-shadow: white 0px 5px 10px 0px}
+.usr_show:not(:hover){transition: 1s}
+
+#access{color: white; top: 0px; text-align: center}
+#access:hover{transition: 0.5s; background-color: white; box-shadow: white 0px 5px 10px 0px; color: #2F4F4F}
+#access:not(:hover){transition: 1s}
+
+#logout{color: white; top: 0px; text-align: center; cursor: pointer; background-color: rgba(255,127,80,0.8); box-shadow: rgba(255,127,80,0.8) 0px 5px 10px 0px;}
+#logout:hover{transition: 0.5s; background-color: rgba(255,127,80,1); box-shadow: rgba(255,127,80,1) 0px 5px 10px 0px;}
+#logout:not(:hover){transition: 1s}
+
+.user_btn:hover{transition: 1s; background-color: #ADADAD; color: #3C3C3C}
+.user_btn:not(:hover){transition: 1s}
+
+.name{font-size: 21px; color: black;}
+.status{font-size: 21px; color: black;}
+.access{font-size: 21px; color: black;}
+
+.name_inf{width: 450px; font-size: 18px; color:#F08080; left: 50px; padding-top: 15px; border-top-style:none; border-left-style: none;
+    border-right-style: none; border-bottom: 2px solid rgba(128,0,0,0.4); padding-bottom: 15px; top: 0px}
+
+.status_inf{width: 195px; font-size: 18px; color:#F08080; padding-top: 15px;border-top-style:none; border-left-style: none;
+    border-right-style: none; border-bottom: 2px solid rgba(128,0,0,0.4); padding-bottom: 15px; left: 49px; top: 0px}
+
+.access_inf{width: 70px; font-size: 18px; color:#F08080; padding-top: 15px; border-top-style:none; border-left-style: none;
+    border-right-style: none; border-bottom: 2px solid rgba(128,0,0,0.4); left: -10px; padding-bottom: 15px; left: 48px; top: 0px}
+
+.change{font-size: 18px; color: white; left: 138px; background-color: #4B0082; top: 0px;
+    width: 100px; text-align: center; border-radius: 30px; cursor: pointer}
+.change:hover{transition: 0.7s; background-color: #8A2BE2; border-radius: 10px}
+.change:not(:hover){transition: 1s}
+
+.change_host{font-size: 18px; color: white; left: 138px; background-color: #4B0082; top: 0px;
+    width: 100px; text-align: center; border-radius: 30px; cursor: pointer}
+.change_host:hover{transition: 0.7s; background-color: #8A2BE2; border-radius: 10px}
+.change_host:not(:hover){transition: 1s}
+
+#create_usr{background-color: black; color: white; border-radius: 20px}
+#create_usr:hover{transition: 0.7s; border-radius: 0px}
+#create_usr:not(:hover){transition: 1s}
+#create_host{background-color: black; color: white; border-radius: 20px}
+#create_host:hover{transition: 0.7s; border-radius: 0px}
+#create_host:not(:hover){transition: 1s}
+
+.delete{font-size: 18px; color: white; background-color: #CD5C5C; top: 0px;
+    left: 138px; width: 100px; text-align: center; border-radius: 30px; cursor: pointer}
+.delete:hover{transition: 0.5s; background-color: #FF0000; color: white; border-radius: 10px}
+.delete:not(:hover){transition: 1s}
+
+#manage_btn{height: 35px; width: 100px; left: -157px; top: 15px; position: relative;
+    border-radius: 6px; cursor: pointer; background-color: #C0C0C0; font-size: 15px}
+#manage_btn:hover{transition: 0.5s; color: #FF8C00; background-color: #FDF5E6}
+#manage_btn:not(:hover){transition: 1s}
+
+.ns_btn{cursor: pointer; width: 300px; height: 120px; margin-left: 50px; font-size: 24px; border: 0px;
+    border-radius: 12px; background-color: #191970; color: white; overflow: auto; font-family: 'STHeiti'}
+.ns_btn::-webkit-scrollbar{width: 16px; height: 8px; background-color: transparent; color: black}
+.ns_btn::-webkit-scrollbar-thumb{border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: #555;}
+.ns_btn:hover{transition: 0.8s; background-color: #4169E1; color: #F0FFFF}
+.ns_btn:not(:hover){transition: 1.2s}
+#create_ns{cursor: pointer; width: 300px; height: 120px; margin-left: 50px; font-size: 24px; border: 0px;
+    border-radius: 12px; background-color: #2E8B57; color: #FAFAD2; overflow: auto; font-family: 'STHeiti'}
+#create_ns:hover{transition: 0.8s; background-color: #66CDAA; color: #B8860B}
+#create_ns:not(:hover){transition: 1.2s}
+
+.nd_btn{width: 150px; height: 50px; margin-top: 5px; font-size: 14px; margin-left: 20px; cursor: pointer; border: 0px; background-color: #800080; color: #E6E6FA; border-radius: 6px}
+.nd_btn:hover{background: #BA55D3; transition: 0.6s; color: #4B0082}
+.nd_btn:not(:hover){transition: 1s}
+
+.ser_btn{border: 0px; background-color: #87CEFA; width: 300px; height: 120px; margin-left: 50px; margin-top: 50px;
+    border-radius: 8px; font-size: 20px; cursor: pointer}
+.ser_btn:hover{transition: 0.6s; background-color: #DAA520; color: white}
+.ser_btn:not(:hover){transition: 1.2s}
+
+#back_btn{background-color: #6495ED; cursor: pointer}
+#back_btn:hover{background-color: #8A2BE2; color: white; transition: 0.5s}
+#back_btn:not(:hover){transition: 0.5s}
+
+#back_btn_2{background-color: #6A5ACD; cursor: pointer; color: white}
+#back_btn_2:hover{background-color: #483D8B; transition: 0.5s}
+#back_btn_2:not(:hover){transition: 0.5s}
+
+#console_{border-radius: 2px; border: 0px; color: #E6E6FA; background-color: #4B0082; cursor: pointer}
+#console_:hover{transition: 0.6s; color: #F8F8FF; background-color: #8A2BE2}
+#console_:not(:hover){transition: 0.6s}
+
+#console_show{width: 1200px; height: 500px; float: left; margin-top: 100px; margin-left: 50px}
+
+#command{height: 40px; width: 600px; margin-left: 150px; border-radius: 4px; background-color: #FFFAFA;
+    border: 0px; box-shadow: 0px 0px 1px 1px #FFA07A; outline: 0; font-size: 16px}
+#command:focus{transition: 0.1s; box-shadow: 0px 0px 2px 2px #FFA07A}
+#command:not(:focus){transition: 0.1s}
+
+#sub_btn{font-size: 16px; width: 70px; height: 40px; margin-left: 40px; background-color: #228B22; border: 0px; border-radius: 4px; color: #FFFAFA;
+    cursor: pointer}
+#sub_btn:hover{transition: 0.6s; background-color: #3CB371;}
+#sub_btn:not(:hover){transition: 0.6s}
+
+#reset_btn{font-size: 16px; width: 100px; height: 40px; margin-left: 20px; background-color: #DB7093; border: 0px; border-radius: 4px; color: #FFFAFA;
+    cursor: pointer}
+#reset_btn:hover{transition: 0.6s; background-color: #DC143C}
+#reset_btn:not(:hover){transition: 1s}
+
+.f_name{width: 550px; top: 0px; color: #006400; font-size: 20px; margin-top: 0px; overflow: hidden; display: inline-block}
+.f_size{width: 200px; top: 0px; color: #006400; font-size: 20px; margin-top: 0px; overflow: hidden; display: inline-block}
+.f_type{width: 150px; top: 0px; color: #006400; font-size: 20px; margin-top: 0px; overflow: hidden; display: inline-block; margin-left: 50px}
+.f_path{width: 200px; top: 0px; color: #006400; font-size: 20px; margin-top: 0px; overflow: hidden; display: inline-block}
+.dir:hover{border: 1px solid black; cursor: pointer; border-radius: 16px}
+.normal:hover{border: 1px solid black; cursor: pointer; border-radius: 16px}
+
+.backup_title{font-size: 20px; color: black; position: absolute; top: 230px}
+.f2_name{width: 300px; top: 0px; color: #A0522D; font-size: 22px; margin-top: 0px; overflow: hidden; display: inline-block; text-align: center}
+.f2_size{width: 200px; top: 0px; color: #A0522D; font-size: 22px; margin-top: 0px; overflow: hidden; display: inline-block; text-align: center}
+.f2_time{width: 300px; top: 0px; color: #A0522D; font-size: 22px; margin-top: 0px; overflow: hidden; display: inline-block; text-align: center}
+.backup_info{width: 130px; height: 25px; font-size: 16px; text-align: center; outline: 0; top: 70px; margin-left: 20px}
+.info_title{font-size: 18px; font-family: 'STHupo'; position: relative; top: 70px; color: #808080}
+.refresh{font-size: 18px; color: white; background-color: #008080; top: 0px;
+    left: 138px; width: 30px; text-align: center; border-radius: 45px; cursor: pointer}
+.refresh:hover{transition: 0.5s; background-color: #00CED1; color: white}
+.refresh:not(:hover){transition: 1s}
+
+::-webkit-scrollbar
+{
+    width: 16px;
+    height: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-button
+{
+    display: none;
+}
+#ns_show::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: black;
+}

@@ -1,0 +1,30 @@
+/* login.css */
+body{background: url("/static/image/wormz.png"); user-select: none;}
+a{text-decoration: none; color: #00CACA;}
+a:hover{color: #00E3E3; transition: 0.3s}
+a:not(:hover){transition: 0.5s}
+
+#register{margin: 80px auto; width: 500px; height: 600px; background: white; text-align: center; 
+	box-shadow: darkgrey 5px 5px 10px 5px ;}
+
+#create_ns{margin: 80px auto; width: 600px; height: 550px; background: white; text-align: center;
+	box-shadow: darkgrey 5px 5px 10px 5px ;}
+
+#p1{font-size: 36px; font-family: "microsoft yahei"; margin-top: 30px; margin-bottom: auto;}
+#p2{font-size: 14px;}
+
+.header{font-size: 16px; position: relative; left: -140px;}
+#header_name{font-size: 16px; position: relative; left: -132px;}
+
+#btn{top: 0px; left: 0px; border: 0px; border-radius: 14px; width: 125px; height: 49px;
+		cursor: pointer; background-color: #ACD6FF; position: relative; }
+#btn:hover{background-color: skyblue; transition: 0.4s;}
+#btn:not(:hover){transition: 0.3s;}
+
+.usr_text{color: black; font-size: 16px;}
+
+input{border: 1.5px solid #d0d0d0; border-radius: 4px; height: 30px; box-shadow: inset 1px 1px 3px 0px #d0d0d0;
+	background-color: white; outline: 0; width: 60%; text-align: center;}
+input:focus{border: 1px solid #00CACA; transition: 0.5s; box-shadow: inset 1px 1px 3px 0px #00CACA;}
+input:not(:focus){transition: 0.5s;}
+

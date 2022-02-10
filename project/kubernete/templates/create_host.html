@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建管理主机</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/register.css"/>
+		<script>
+			var num = 0;
+
+			function confirm()
+			{
+				var host_ip = document.getElementById("ip_text").value;
+				var host_name = document.getElementById("name_text").value;
+				var host_passwd = document.getElementById("password").value;
+
+                if(host_ip==''){
+                    alert("主机IP不能为空！！！");
+                    return false;
+                }else if(host_passwd==''){
+                    alert("root密码不能为空！！！");
+                    return false;
+                }else{
+                    return true;
+                }
+			}
+
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="register" style="height: 800px">
+			<br><br>
+
+			<p id="p1">创建管理主机</p>
+
+			<br><br><br><br>
+			<form method="post" onsubmit="return confirm()">
+				<p class="header" style="margin-left: -470px">主机IP <span style="color: red;">*</span></p>
+				<input type="text" name="host_ip" class="usr_text" value="" id="ip_text" autofocus="autofocus" style="text-align: center">
+
+				<br><br><br><br>
+
+				<p class="header" style="margin-left: -380px">主机别名&nbsp;&nbsp;<span style="color: red;">*默认为主机IP</span></p>
+				<input type="text" name="host_name" class="usr_text" value="" id="name_text" style="text-align: center">
+
+				<br><br><br><br>
+
+				<p class="header" style="margin-left: -455px;">root密码 <span style="color: red;">*</span></p>
+				<input type="password" name="host_passwd" id="password" value="" style="text-align: center"/>
+
+				<br><br><br><br>
+				<a href=""><button type="submit" id="btn" style="color: white; font-size: 16px;" onFocus="this.blur()">确认创建</button></a>
+				<div style="font-size: 14px; color: red; width: 200px; margin-left: 150px; position: absolute; left: 510px; top: 780px"><strong>{{ERROR}}</strong></div>
+			</form>
+		</div>
+		<button id="back" onclick="javascript:history.back(-1);" style="position: absolute; font-size: 20px; top: 90px; left: 1010px; border-radius: 45px; cursor: pointer">⬅</button>
+	</body>
+</html>

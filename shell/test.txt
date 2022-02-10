@@ -1,0 +1,91 @@
+Name:         myapp-pod
+Namespace:    default
+Priority:     0
+Node:         slave/192.168.1.5
+Start Time:   Mon, 29 Mar 2021 21:03:23 +0800
+Labels:       app=myapp
+Annotations:  cni.projectcalico.org/podIP: 10.244.1.250/32
+              kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"app":"myapp"},"name":"myapp-pod","namespace":"default"},"spec":{"c...
+Status:       Running
+IP:           10.244.1.250
+Init Containers:
+  init-myservice:
+    Container ID:  docker://153c3da22712a3427829c53be3796bb65a2945fb0679aeadb4101a3209b07b4a
+    Image:         busybox:1.28
+    Image ID:      docker-pullable://busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      until nslookup myservice.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for myservice; sleep 2; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 23 Jun 2021 22:01:29 +0800
+      Finished:     Wed, 23 Jun 2021 22:01:52 +0800
+    Ready:          True
+    Restart Count:  12
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-smp7j (ro)
+  init-mydb:
+    Container ID:  docker://a76f455a005435a3647adb7b008f35202345a715232e502699a6f264e5c91dd7
+    Image:         busybox:1.28
+    Image ID:      docker-pullable://busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      until nslookup mydb.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Wed, 23 Jun 2021 22:02:00 +0800
+      Finished:     Wed, 23 Jun 2021 22:02:00 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-smp7j (ro)
+Containers:
+  myapp-container:
+    Container ID:  docker://661ee70f478c688eaf65ef7aea53416751d8a5e251c21d21a515fc10f1e0898f
+    Image:         busybox:1.28
+    Image ID:      docker-pullable://busybox@sha256:141c253bc4c3fd0a201d32dc1f493bcf3fff003b6df416dea4f41046e0f37d47
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      sh
+      -c
+      echo The app is running! && sleep 3600
+    State:          Running
+      Started:      Wed, 23 Jun 2021 22:02:02 +0800
+    Last State:     Terminated
+      Reason:       Error
+      Exit Code:    255
+      Started:      Fri, 14 May 2021 18:08:58 +0800
+      Finished:     Wed, 16 Jun 2021 17:03:20 +0800
+    Ready:          True
+    Restart Count:  16
+    Environment:    <none>
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-smp7j (ro)
+Conditions:
+  Type              Status
+  Initialized       True 
+  Ready             True 
+  ContainersReady   True 
+  PodScheduled      True 
+Volumes:
+  default-token-smp7j:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-smp7j
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  <none>
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:          <none>

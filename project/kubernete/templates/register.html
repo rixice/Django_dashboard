@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/register.css"/>
+		<script>
+			var num = 0;
+
+			function confirm()
+			{
+				var em = document.getElementById("email_text");
+				var nm = document.getElementById("name_text");
+				var ps = document.getElementById("ps_1");
+				var ps2 = document.getElementById("ps_2");
+
+				if(nm.value=="")
+				{
+					alert("用户名不能为空!");
+					return false;
+				}else{
+					if(ps.value=="")
+					{
+						alert("密码不能为空!");
+						return false;
+					}else{
+						if(confirm_ps()==false)
+						{
+							alert("请重新确认密码!");
+							return false;
+						}else{
+							return true;
+						}
+					}
+				}
+			}
+			
+			function confirm_ps()
+			{
+				var ps_1 = document.getElementById("ps_1").value;
+				var ps_2 = document.getElementById("ps_2").value;
+				if(ps_1!==ps_2)
+				{
+					alert("两次密码输入不一致，请检查!");
+					return false;
+				}else{
+					return true;
+				}
+			}
+			
+
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="register">
+			<br><br>
+			
+			<p id="p1">创建账户</p>
+			<p id="p2"><a>注册后，方可使用本页面功能</a></p>
+			
+			<br><br><br><br>
+			<form method="post" onsubmit="return confirm()">
+				<p class="header" style="margin-left: -470px">邮箱</p>
+				<input type="text" name="usr_email" class="usr_text" value="" id="email_text" autofocus="autofocus">
+			
+				<br><br><br><br>
+			
+				<p id="header_name">用户名 <span style="color: red;">*</span></p>
+				<input type="text" name="usr_name" class="usr_text" value="" id="name_text">
+			
+				<br><br><br><br>
+			
+				<p class="header">密码 <span style="color: red;">*</span></p>
+				<input type="password" name="usr_passwd" id="ps_1" value="" />
+			
+				<br><br><br><br>
+			
+				<p id="confirm_ps">确认密码 <span style="color: red;">*</span></p>
+				<input type="password" name="" id="ps_2" value=""/>
+			
+				<br><br><br><br>
+				<a href=""><button type="submit" id="btn" style="color: white; font-size: 16px;" onFocus="this.blur()">注册</button></a>
+			</form>
+		</div>
+		<button id="back" onclick="javascript:history.back(-1);" style="position: absolute; font-size: 20px; top: 90px; left: 1010px; border-radius: 45px; cursor: pointer">⬅</button>
+	</body>
+</html>

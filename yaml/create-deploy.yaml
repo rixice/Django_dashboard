@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rss-site
+  namespace: kube-node-lease
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+        - name: test1
+          image: nginx
+          ports:
+            - containerPort: 80
+        - name: test2
+          image: nickchase/rss-php-nginx:v1
+          ports:
+            - containerPort: 88
+

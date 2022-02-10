@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>账户管理</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/manage_usr.css"/>
+		<script>
+			function confirm()
+			{
+				var is_active = document.getElementById('is_active').value;
+				var is_root = document.getElementById('is_root').value;
+				if(is_active=='True'||is_active=='False')
+				{
+                    if(is_root=='False'||is_root=='True')
+                    {
+                        return true;
+                    }else{
+                        alert('请按规则写入！')
+                        return false;
+                    }
+                }else{
+                    alert('请按规则写入！')
+                    return false;
+                }
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="manage_usr">
+			<br><br>
+
+			<p id="p1">账户管理</p>
+			<p id="p2"><a>您可在此修改用户的权限</a></p>
+
+			<br><br><br><br>
+			<form method="post" onsubmit="return confirm()" action="{{user_info.id}}">
+				<strong><p class="header" style="position: relative; left: 50px;">用户名 <span style="color: red;">&nbsp;&nbsp;&nbsp;&nbsp;*不可修改</span></p></strong>
+				<input type="text" name="name" class="usr_text" value="{{user_info.name}}" disabled="disabled" style="color: gray">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="position: relative; left: 65px; top: -15px">活跃状态 <span style="color: red;">&nbsp;&nbsp;*[True|False]</span></p></strong>
+				<input type="text" name="is_active" class="usr_text" id="is_active" value="{{user_info.is_active}}">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="position: relative; left: 65px; top: -15px">管理权限 <span style="color: red;">&nbsp;&nbsp;*[True|False]</span></p></strong>
+				<input type="text" name="is_root" class="usr_text" id="is_root" value="{{user_info.is_root}}">
+
+				<button id="btn" style="font-size: 16px; margin-top: 80px" type="submit">确认修改</button>
+			</form>
+		</div>
+	</body>
+</html>

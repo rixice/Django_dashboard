@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script>
+        function confirm(){
+            if(document.getElementById('name_text').value == "")
+            {
+                alert("用户名未填写!!!");
+                return false;
+            }else if(document.getElementById('ps_1').value == ""){
+                alert("密码未填写");
+                return false;
+            }else{
+                return true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="post" onsubmit="return confirm()">
+        <div id="register">
+            <br><br>
+
+            <p id="p1">登录</p>
+            <p id="p2">没有账号？<a href="#">联系管理员创建</a></p>
+
+            <br>
+
+            <strong><p id="header_name" style="color: #6C6C6C;">用户名</p></strong>
+            <input type="text" name="usr_name" class="usr_text" value="{{usr_name}}" id="name_text">
+
+            <br><br><br><br>
+
+            <strong><p class="header" style="color: #6C6C6C;">密码</p></strong>
+            <input type="password" name="usr_passwd" id="ps_1" value="" />
+
+            <br><br><br><br>
+            <button type="submit" id="btn" style="color: white; font-size: 16px;" onFocus="this.blur()">登录</button>
+            <div style="font-size: 14px; color: red; width: 200px; margin-left: 150px; margin-top: 20px">{{ERROR}}</div>
+        </div>
+    </form>
+</body>
+</html>

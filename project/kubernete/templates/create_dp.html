@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建pod</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/create_dp.css"/>
+		<script>
+			function check()
+			{
+				var req = document.getElementById('replicas').value;
+				if(req == '1')
+				{
+					document.getElementById('register').style.height = '1400px';
+					document.getElementById('btn').style.marginTop = '50px';
+					document.getElementById('second').style.display = 'none';
+					document.getElementById('third').style.display = 'none';
+				}else{
+					if(req == '2')
+					{
+						document.getElementById('register').style.height = '1800px';
+						document.getElementById('btn').style.marginTop = '60px';
+						document.getElementById('second').style.display = 'block';
+						document.getElementById('third').style.display = 'none';
+					}else{
+						if(req == '3')
+						{
+							document.getElementById('register').style.height = '2200px';
+							document.getElementById('btn').style.marginTop = '60px';
+							document.getElementById('second').style.display = 'block';
+							document.getElementById('third').style.display = 'block';
+						}
+					}
+				}
+			}
+
+			function confirm()
+			{
+				pod_nm = document.getElementById('pod_name').value;
+				pod_lab = document.getElementById('pod_label').value;
+				ctn_name = document.getElementById('ctn_name').value;
+				img_name = document.getElementById('img_name').value;
+				update_ck = document.getElementById('update_ck').value;
+				health_ck = document.getElementById('health_ck').value;
+				node_nm = document.getElementById('node_nm').value;
+				if(pod_nm==""){
+					alert("存在未填写项，请检查！");
+					return false;
+				}else{
+					if(pod_lab==""){
+						alert("存在未填写项，请检查！");
+						return false;
+					}else{
+						if(ctn_name==""){
+							alert("存在未填写项，请检查！");
+							return false;
+						}else{
+							if(img_name==""){
+								alert("存在未填写项，请检查！");
+								return false;
+							}else{
+								if(update_ck==""){
+									alert("存在未填写项，请检查！");
+									return false;
+								}else{
+									if(health_ck==""){
+										alert("存在未填写项，请检查！");
+										return false;
+									}else{
+										if(node_nm==""){
+											alert("存在未填写项，请检查！");
+											return false;
+										}else{
+											if(ns_nm==""){
+												alert("存在未填写项，请检查！");
+												return false;
+											}else{
+												return true;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="register">
+			<br><br>
+
+			<p id="p1">创建Deployment</p>
+			<p class="p2" style="color: #FF4500">注意:&nbsp;&nbsp;本页面只支持最多<strong>3个副本</strong>的Deploy创建 </p>
+			<p class="p2">如有其他需要，请在后台<a>自定义yaml</a>文件</p>
+
+			<br><br><br><br>
+			<form method="post" onsubmit="return confirm()">
+				<strong><p class="header" style="margin-left: -385px">API版本&nbsp;&nbsp;<span style="color: red;">*( 例：v1 )</span></p></strong>
+				<input type="text" name="api_version" class="usr_text" value="" id="api_version" autofocus="autofocus">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -210px">Deployment名称&nbsp;&nbsp;<span style="color: red;">*在同一Namespace中必须唯一</span></p></strong>
+				<input type="text" name="pod_name" class="usr_text" value="" id="pod_name">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -360px">Labels&nbsp;&nbsp;<span style="color: red; margin-left: 15px">*关联的标签名</span></p></strong>
+				<input type="text" name="pod_label" class="usr_text" value="" id="pod_label">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -330px">选择命名空间&nbsp;&nbsp;<span style="color: red;">*默认为default</span></p></strong>
+				<input type="text" name="ns_nm" class="usr_text" value="" id="ns_nm">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -325px">需要运行的副本数&nbsp;&nbsp;<span style="color: red;">*[ 1 | 2 | 3 ]</span></p></strong>
+				<input type="text" name="replicas" value="" class="usr_text" id="replicas" onblur="check()"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -345px">First容器名称&nbsp;&nbsp;<span style="color: red;">*容器的名字</span></p></strong>
+				<input type="text" name="container_1" value="" class="usr_text" id="ctn_1"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -290px">First镜像名称&nbsp;&nbsp;<span style="color: red;">*容器使用的镜像地址</span></p></strong>
+				<input type="text" name="img_1" value="" class="usr_text" id="img_1"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -450px">端口号&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+				<input type="text" name="port_1" value="" class="usr_text" id="port_1"/>
+
+				<div id="second" style="display: none;">
+					<br><br><br>
+
+					<strong><p class="header" style="margin-left: -390px">Second容器名称&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="container_2" value="" class="usr_text" id="ctn_2"/>
+
+					<br><br><br><br>
+
+					<strong><p class="header" style="margin-left: -390px">Second镜像名称&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="img_2" value="" class="usr_text" id="img_2"/>
+
+					<br><br><br><br>
+
+					<strong><p class="header" style="margin-left: -450px">端口号&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="port_2" value="" class="usr_text" id="port_2"/>
+				</div>
+
+				<div id="third" style="display: none;">
+					<br><br><br>
+
+					<strong><p class="header" style="margin-left: -405px">Third容器名称&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="container_3" value="" class="usr_text" id="ctn_3"/>
+
+					<br><br><br><br>
+
+					<strong><p class="header" style="margin-left: -405px">Third镜像名称&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="img_3" value="" class="usr_text" id="img_3"/>
+
+					<br><br><br><br>
+
+					<strong><p class="header" style="margin-left: -450px">端口号&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="port_3" value="" class="usr_text" id="port_3"/>
+				</div>
+
+				<button type="submit" id="btn" style="font-size: 16px;" onFocus="this.blur()">确认创建</button>
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bear的运维仪表盘</title>
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+    <style>
+        ::-webkit-scrollbar-button {
+            height: 5px;
+            width: 10px;
+            background-color:cyan;
+        }
+        ::-webkit-scrollbar-thumb{
+            border-radius: 3px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+
+    </style>
+    <script>
+        function init(){
+            document.getElementById('log').style.borderRightWidth = '10px';
+            document.getElementById('log').style.borderRightStyle = 'solid';
+            document.getElementById('log').style.borderRightColor = 'rgba(25,25,112,1)';
+            document.getElementById('log').style.backgroundColor = 'rgba(25,25,112,0.6)' ;
+            document.getElementById('log').style.width = '200px';
+        }
+    </script>
+<body onload="init()">
+    <div id="main">
+        <div id="left_menu">
+            <div id="logo">
+                <span style="width: 200px; color: #d0d0d0; font-size: 30px; position: relative; top: 25px; left: 50px; z-index: 1; font-family: 'STHupo'">
+                    Dashboard</span>
+            </div>
+            <table id="left_table">
+                <tr>
+                    <td>Menu</td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="management" onclick="location.href='/management';"><a>✲<span style="margin-left: 20px">Management</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="monitor"  onclick="location.href='/monitor';"><a>▦<span style="margin-left: 21px">Monitor</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="kubernetes" onclick="location.href='/kuber';"><a>▞<span style="margin-left: 20px">Kubernetes</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="console" onclick="location.href='/console';"><a>⌨<span style="margin-left: 13px">Console</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="log" onclick="location.href='/log';"><a>◫<span style="margin-left: 22px">Log</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="ftp" onclick="location.href='/backup';"><a>↺<span style="margin-left: 22px">System Backup</span></a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="top_menu">
+            <table id="usr_info" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="usr_show">Host IP:<strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ host_ip }}</strong></td>
+                    <td class="usr_show">Current User:<strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ usr_name }}</strong></td>
+                    <td id="access">Can Manage:&nbsp;&nbsp;{{ usr_access }}</td>
+                    <td id="logout" onclick="location.href='/login'">LogOut</td>
+                </tr>
+            </table>
+        </div>
+        <div id="show">
+            <span id="p1" style="color: #2F4F4F; margin-left: 40px; position: absolute; font-size: 24px; top: 110px">
+                <strong>日志查询&nbsp;&nbsp;Log</strong></span>
+            <hr style="position: absolute; width: 1270px; height: 2px; background-color: black; border: 0px; top: 160px; left: 250px">
+            <div style="margin-left: 40px; margin-top: 100px; width: 80%; user-select: text; height: 24px; overflow: hidden">
+                <strong><span id="path" style="font-size: 18px; color: #1E90FF; margin-left: 40px">
+                当前路径:&nbsp;&nbsp;&nbsp;&nbsp;{{ path }}</span></strong>
+            </div>
+            <button id="back_btn_2" onclick="javascript:history.back(-1);" style="border-radius: 4px; position: absolute; left: 1300px; font-size: 16px; width: 140px; height: 40px; top: 110px; border: 0px"><strong>上一级目录</strong></button>
+            <br>
+            <span style="margin-left: 45px; margin-top: 0px; font-size: 24px; position: absolute"><strong>FILE NAME</strong></span>
+            <span style="margin-left: 645px; margin-top: 0px; font-size: 24px; position: absolute"><strong>TYPE</strong></span>
+<!--            <span style="margin-left: 796px; margin-top: 0px; font-size: 24px; position: absolute"><strong>SIZE</strong></span>-->
+            <span style="margin-left: 800px; margin-top: 0px; font-size: 24px; position: absolute"><strong>LAST MODIFIED</strong></span>
+            <div style="width: 80%; height: 395px; margin-left: 280px; margin-top: 40px; overflow-x: auto; overflow-y: auto; border-bottom: 3px solid black; border-top: 3px solid black">
+                <table style="margin-left: 5px; margin-top: 0px; border-collapse: collapse;">
+                    {% for file in all_log %}
+                        {% if file.type == "directory" %}
+                            <tr class="dir" onclick="location.href='{{ file.name }}'">
+                                <td class="f_name" style="color: #0000FF">{{ file.name }}</td>
+                                <td class="f_type" style="color: #0000FF">{{ file.type }}</td>
+<!--                                <td class="f_size" style="color: #0000FF">{{ file.size }}</td>-->
+                            </tr>
+                        {% else %}
+                            <tr class="normal" onclick="location.href='/log_info/{{ file.name }}'">
+                                <td class="f_name">{{ file.name }}</td>
+                                <td class="f_type">{{ file.type }}</td>
+<!--                                <td class="f_size">{{ file.size }}</td>-->
+                                <td class="f_path">{{ file.time }}</td>
+                            </tr>
+                        {% endif %}
+                        {% empty %}
+                            <form method="post">
+                                <span style="font-size: 18px; color: #B22222; float: left; margin-left: 380px; margin-top: 50px">检索到多个同名文件 或 当前目录下为空</span><br>
+                                <input type="text" name="path" style="width: 500px; height: 30px; font-size: 16px; margin-left: 300px; margin-top: 50px; outline: 0" placeholder="请输入指定路径" autofocus>
+                                <br><button type="submit" id="sub_btn" style="width: 100px; margin-left: 500px; margin-top: 50px"><strong>提&nbsp;&nbsp;交</strong></button>
+                            </form>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建命名空间</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+    <script>
+        function confirm(){
+            if(document.getElementById('name_text').value == "")
+            {
+                alert("名称不能为空");
+                return false;
+            }else{
+                return true;
+            }
+        }
+
+        function req_check(){
+            var req = document.getElementById("req_choice").value;
+            if(req=="True"){
+                document.getElementById("pod_req").style.display = 'block';
+                document.getElementById("create_ns").style.height = "2500px"
+            }else{
+                document.getElementById("pod_req").style.display = 'none';
+                document.getElementById("create_ns").style.height = "550px"
+            }
+        }
+    </script>
+</head>
+<body>
+    <form action="" method="post" onsubmit="return confirm()">
+        <div id="create_ns">
+            <br><br>
+
+            <p id="p1">创建命名空间</p>
+
+            <br>
+
+            <strong><p class="header_name" style="color: #6C6C6C;">名称</p></strong>
+            <input type="text" name="ns_name" class="usr_text" value="" id="name_text">
+
+            <br><br><br><br>
+
+            <strong><p class="header_name" style="color: #6C6C6C;">是否进行资源限制 True | False</p></strong>
+            <input type="text" name="req_choice" class="usr_text" id="req_choice" onblur="req_check()">
+
+            <br><br><br><br>
+
+            <div id="pod_req" style="display: none">
+                <strong><p class="header_name" style="color: #F08080">------------ 关于Pod的限制 ------------</p></strong>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">CPU 最大限制(核数)</p></strong>
+                <input type="text" name="pod_cpu_max" class="usr_text" id="pod_cpu_max">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">内存 最大限制(Gi | Mi)</p></strong>
+                <input type="text" name="pod_mem_max" class="usr_text" id="pod_mem_max">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">CPU 最小限制(m)</p></strong>
+                <input type="text" name="pod_cpu_min" class="usr_text" id="pod_cpu_min">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">内存 最小限制(Gi | Mi)</p></strong>
+                <input type="text" name="pod_mem_min" class="usr_text" id="pod_mem_min">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #F08080">------------ 关于Container的限制 ------------</p></strong>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">默认 CPU(m)</p></strong>
+                <input type="text" name="ctn_cpu_def" class="usr_text" id="ctn_cpu_def">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">默认 内存(Gi | Mi)</p></strong>
+                <input type="text" name="ctn_mem_def" class="usr_text" id="ctn_mem_def">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">默认 CPU 启动限制(m)</p></strong>
+                <input type="text" name="ctn_cpu_req" class="usr_text" id="ctn_cpu_req">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">默认 内存 启动限制(Gi | Mi)</p></strong>
+                <input type="text" name="ctn_mem_req" class="usr_text" id="ctn_mem_req">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">CPU 最大限制(核数)</p></strong>
+                <input type="text" name="ctn_cpu_max" class="usr_text" id="ctn_cpu_max">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">内存 最大限制(Gi | Mi)</p></strong>
+                <input type="text" name="ctn_mem_max" class="usr_text" id="ctn_mem_max">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">CPU 最小限制(m)</p></strong>
+                <input type="text" name="ctn_cpu_min" class="usr_text" id="ctn_cpu_min">
+
+                <br><br><br><br>
+
+                <strong><p class="header_name" style="color: #6C6C6C;">内存 最小限制(Gi | Mi)</p></strong>
+                <input type="text" name="ctn_mem_min" class="usr_text" id="ctn_mem_min">
+
+                <br><br><br><br>
+
+            </div>
+
+            <button type="submit" id="btn" style="color: white; font-size: 16px;" onFocus="this.blur()">确认</button>
+            <div style="font-size: 14px; color: red; width: 200px; margin-left: 150px; margin-top: 20px">{{ERROR}}</div>
+        </div>
+    </form>
+</body>
+</html>

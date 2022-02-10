@@ -1,0 +1,66 @@
+/* manage_ns.css */
+#main{background-color: #FFF5EE; width: 1510px; height: 700px; background-size: 100%; z-index: 2; user-select: none; box-shadow: 10px 10px 15px 10px}
+a{text-decoration: none; color: #9D9D9D}
+
+#left_menu{background: url('/static/image/b_w.jpg'); width: 16%; height: 100%; float: left; box-shadow: 5px 5px 10px 5px}
+#left_table{float: left; margin-top: 30px; margin-left: 30px;}
+
+td{font-size: 20px; color: #9D9D9D; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    top: 40px;position: relative; border: 0px}
+
+.pod{cursor: pointer; height: 30px}
+.pod:hover{background-color: #87CEFA; transition: 0.5s;}
+.pod:not(:hover){background-color: transparent; transition: 0.5s}
+
+#back_btn{background-color: #6495ED; cursor: pointer}
+#back_btn:hover{background-color: #8A2BE2; color: white; transition: 0.5s}
+#back_btn:not(:hover){transition: 0.5s}
+
+.choice{top: 50px; height: 40px; width: 210px; position: relative; cursor: pointer; float: left; padding-top: 10px; left: -28px; padding-left: 28px;
+    margin-top: 5px;}
+.choice:hover{transition: 0.5s; background-color: rgba(25, 25, 112, 0.4);}
+.choice:not(:hover){transition: 0.5s;}
+.ch td:hover a{color: white; transition: 0.5s}
+.ch td:not(:hover) a{transition: 0.5s;}
+
+#top_menu{background: url('/static/image/b_w.jpg'); width: 100%; height: 10%; float: top; box-shadow: 1px 1px 5px 1px}
+#usr_info{float: right; width: 60%; height: 100%; margin-top: 0px;}
+.usr_show{color: white; top: 0px; text-align: center}
+.usr_show:hover{transition: 0.5s; color: #D2691E; background-color: white; box-shadow: white 0px 5px 10px 0px}
+.usr_show:not(:hover){transition: 1s}
+
+#access{color: white; top: 0px; text-align: center}
+#access:hover{transition: 0.5s; background-color: white; box-shadow: white 0px 5px 10px 0px; color: #2F4F4F}
+#access:not(:hover){transition: 1s}
+
+#logout{color: white; top: 0px; text-align: center; cursor: pointer; background-color: rgba(255,127,80,0.8); box-shadow: rgba(255,127,80,0.8) 0px 5px 10px 0px;}
+#logout:hover{transition: 0.5s; background-color: rgba(255,127,80,1); box-shadow: rgba(255,127,80,1) 0px 5px 10px 0px;}
+#logout:not(:hover){transition: 1s}
+
+.pod_info{font-size: 36px; color: #4B0082; font-family: 'STHupo';}
+.sel_info{color: #2F4F4F}
+.deploy_info{font-size: 36px; color: #4B0082; font-family: 'STHupo';}
+
+.manage_create{background-color: #191970; color: #F5FFFA; font-size: 20px; height: 50px; width: 200px; position: absolute; cursor: pointer}
+.manage_create:hover{transition: 0.5s; background-color: #20B2AA;}
+.manage_create:not(:hover){transition: 0.5s;}
+
+.manage_delete{background-color: #2E8B57; color: #F0FFF0; font-size: 20px; height: 50px; width: 200px; position: absolute; cursor: pointer}
+.manage_delete:hover{transition: 0.5s; background-color: #CD5C5C;}
+.manage_delete:not(:hover){transition: 1s;}
+
+::-webkit-scrollbar
+{
+    width: 16px;
+    height: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-button
+{
+    display: none;
+}
+#ns_show::-webkit-scrollbar-thumb
+{
+    border-radius: 10px;-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);background-color: #555;
+}

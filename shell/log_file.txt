@@ -1,0 +1,16 @@
+history.log
+history.log.1.gz
+history.log.2.gz
+history.log.3.gz
+history.log.4.gz
+history.log.5.gz
+history.log.6.gz
+history.log.7.gz
+term.log
+term.log.1.gz
+term.log.2.gz
+term.log.3.gz
+term.log.4.gz
+term.log.5.gz
+term.log.6.gz
+term.log.7.gz

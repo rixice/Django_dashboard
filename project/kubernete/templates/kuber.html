@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear的运维仪表盘</title>
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+    <style>
+        ::-webkit-scrollbar-button {
+            height: 5px;
+            width: 10px;
+            background-color:cyan;
+        }
+        ::-webkit-scrollbar-thumb{
+            border-radius: 7px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: black;
+        }
+    </style>
+    <script>
+        function init(){
+            document.getElementById('kubernetes').style.borderRightWidth = '10px';
+            document.getElementById('kubernetes').style.borderRightStyle = 'solid';
+            document.getElementById('kubernetes').style.borderRightColor = 'rgba(25,25,112,1)';
+            document.getElementById('kubernetes').style.backgroundColor = 'rgba(25,25,112,0.6)' ;
+            document.getElementById('kubernetes').style.width = '200px';
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="main">
+        <div id="left_menu">
+            <div id="logo">
+                <span style="width: 200px; color: #d0d0d0; font-size: 30px; position: relative; top: 25px; left: 50px; z-index: 1; font-family: 'STHupo'">
+                    Dashboard</span>
+            </div>
+            <table id="left_table">
+                <tr>
+                    <td>Menu</td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="management" onclick="location.href='management';"><a>✲<span style="margin-left: 20px">Management</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="monitor"  onclick="location.href='monitor';"><a>▦<span style="margin-left: 21px">Monitor</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="kubernetes" onclick="location.href='kuber';"><a>▞<span style="margin-left: 20px">Kubernetes</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="console" onclick="location.href='console';"><a>⌨<span style="margin-left: 13px">Console</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="log" onclick="location.href='log';"><a>◫<span style="margin-left: 22px">Log</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="ftp" onclick="location.href='/backup';"><a>↺<span style="margin-left: 22px">System Backup</span></a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="top_menu">
+            <table id="usr_info" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="usr_show">Host IP:<strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ host_ip }}</strong></td>
+                    <td class="usr_show">Current User:<strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ usr_name }}</strong></td>
+                    <td id="access">Can Manage:&nbsp;&nbsp;{{ usr_access }}</td>
+                    <td id="logout" onclick="location.href='/login'">LogOut</td>
+                </tr>
+            </table>
+        </div>
+        <div id="show">
+            <span id="title" style="color: #1E90FF; top: 30px; margin-left: 30px; position: relative; font-size: 24px;">
+                <strong>管理与查看&nbsp;&nbsp;Kubernetes</strong></span>
+            <hr style="position: absolute; width: 1270px; height: 2px; background-color: black; border: 0px; top: 160px; left: 250px">
+            <div id="namespaces" style="width: 1275px; height: 300px; position: absolute;  left: 250px;">
+                <span id="t1" style="font-size: 34px; color: #006400; opacity: 0.8; position: absolute; left: 1020px; top: 0px; font-family: 'STHupo'">NAMESPACE</span>
+                <div id="ns_show" style="position: relative; width: 1255px; overflow-x: auto; overflow-y: hidden; height: 180px; left: 10px; top: 80px; white-space: nowrap; display: inline-block; border-bottom: 3px solid black">
+                    <button id="create_ns" onclick="location.href='create_ns'"><strong>Create NameSpace</strong></button>
+                    {%for ns in all_namespaces%}
+                    <button class="ns_btn" onclick="location.href='manage_namespaces/{{ns.id}}'"><strong>{{ns.namespace}}</strong></button>
+                    {%endfor%}
+                </div>
+            </div>
+            <span id="t2" style="font-size: 34px; color: #006400; opacity: 0.8; position: absolute; left: 300px; top: 405px; font-family: 'STHupo'">NODE</span>
+            <div id="nodes" style="position: absolute; width: 450px; height: 70px; top: 390px; left: 400px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; display: inline-block;">
+                {%for node in all_nodes%}
+                <button class="nd_btn" onclick="location.href='node_info/{{node.name}}'">
+                    <span style="float:left">&nbsp;Name:</span><strong>{{node.name}}</strong><br><span style="float: left">&nbsp;Status:</span><strong>{{node.status}}</strong></button>
+                {%endfor%}
+            </div>
+            <div id="services" style="position: absolute; width: 1255px; height: 200px; left: 260px; top: 470px;">
+                <span id="t3" style="font-size: 34px; color: #006400; opacity: 0.8; position: absolute; left: 1050px; top: -70px; font-family: 'STHupo'">SERVICE</span>
+                <div id="ser_show" style="position: relative; width: 1250px; height: 230px; top: -10px; overflow-x: auto; overflow-y: hidden; white-space: nowrap; display: inline-block; border-bottom: 3px solid black">
+                {%for i in all_services%}
+                    <button class="ser_btn" onclick="location.href='check_service/{{i.id}}'"><span style="float: left; margin-left: 10px">Name:&nbsp;&nbsp;</span><strong>{{i.service_name}}</strong><br><br><span style="float: left; margin-left: 10px">Cluster_IP:&nbsp;&nbsp;</span><strong>{{i.spec_cluster_ip}}</strong></button>
+                {%endfor%}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

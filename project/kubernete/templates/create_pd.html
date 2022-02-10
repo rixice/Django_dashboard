@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建pod</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/create_pd.css"/>
+		<script>
+			function check_request()
+			{
+				var req = document.getElementById('request_ck').value;
+				if(req=='True'||req=='False'){
+					if(req=='True'){
+						document.getElementById('port_info').style.display = 'block';
+						document.getElementById('register').style.height = '1500px';
+						document.getElementById('btn').style.marginTop = '30px';
+					}else{
+						document.getElementById('port_info').style.display = 'none';
+						document.getElementById('register').style.height = '1400px';
+						document.getElementById('btn').style.marginTop = '0px';
+					}
+				}else{
+					alert("请按规则写入，否则可能创建出错!");
+				}
+			}
+
+			function confirm()
+			{
+				pod_nm = document.getElementById('pod_name').value;
+				pod_lab = document.getElementById('pod_label').value;
+				ctn_name = document.getElementById('ctn_name').value;
+				img_name = document.getElementById('img_name').value;
+				update_ck = document.getElementById('update_ck').value;
+				health_ck = document.getElementById('health_ck').value;
+				node_nm = document.getElementById('node_nm').value;
+				if(pod_nm==""){
+					alert("存在未填写项，请检查！");
+					return false;
+				}else{
+					if(pod_lab==""){
+						alert("存在未填写项，请检查！");
+						return false;
+					}else{
+						if(ctn_name==""){
+							alert("存在未填写项，请检查！");
+							return false;
+						}else{
+							if(img_name==""){
+								alert("存在未填写项，请检查！");
+								return false;
+							}else{
+								if(update_ck==""){
+									alert("存在未填写项，请检查！");
+									return false;
+								}else{
+									if(health_ck==""){
+										alert("存在未填写项，请检查！");
+										return false;
+									}else{
+										if(node_nm==""){
+											alert("存在未填写项，请检查！");
+											return false;
+										}else{
+											if(ns_nm==""){
+												alert("存在未填写项，请检查！");
+												return false;
+											}else{
+												return true;
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="register">
+			<br><br>
+
+			<p id="p1">创建Pod</p>
+			<p class="p2">如有其他需要，请在后台<a>自定义yaml</a>文件</p>
+			<p class="p2" style="color: #FF4500">注意:&nbsp;&nbsp;如不按规范填写，将导致创建失败 <strong>( 不支持下划线 )</strong></p>
+
+			<br><br><br><br>
+			<form method="post" onsubmit="return confirm()">
+				<strong><p class="header" style="margin-left: -265px">Pod名称&nbsp;&nbsp;<span style="color: red;">*在同一Namespace中必须唯一</span></p></strong>
+				<input type="text" name="pod_name" class="usr_text" value="" id="pod_name" autofocus="autofocus">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -360px">Labels&nbsp;&nbsp;<span style="color: red; margin-left: 15px">*关联的标签名</span></p></strong>
+				<input type="text" name="pod_label" class="usr_text" value="" id="pod_label">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -330px">选择命名空间&nbsp;&nbsp;<span style="color: red;">*默认为default</span></p></strong>
+				<input type="text" name="ns_nm" class="usr_text" value="" id="ns_nm">
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -375px">容器名称&nbsp;&nbsp;<span style="color: red;">*容器的名字</span></p></strong>
+				<input type="text" name="container_name" value="" class="usr_text" id="ctn_name"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -320px">镜像名称&nbsp;&nbsp;<span style="color: red;">*容器使用的镜像地址</span></p></strong>
+				<input type="text" name="img_name" value="" class="usr_text" id="img_name"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -290px">是否需要监听端口&nbsp;&nbsp;<span style="color: red;">*[ True | False ]</span></p></strong>
+				<input type="text" name="request_ck" value="" class="usr_text" id="request_ck" onblur="check_request()"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -225px">更新策略&nbsp;&nbsp;<span style="color: red;">*[ Always | Never | IfNotPresent ]</span></p></strong>
+				<input type="text" name="update_ck" value="" class="usr_text" id="update_ck"/>
+
+				<br><br><br><br>
+
+				<strong><p class="header" style="margin-left: -245px">重启策略&nbsp;&nbsp;<span style="color: red;">*[ Always | OnFailure | Never ]</span></p></strong>
+				<input type="text" name="health_ck" value="" class="usr_text" id="health_ck"/>
+
+				<br><br><br><br>
+				<div id="port_info" style="display: none;">
+					<strong><p class="header" style="margin-left: -450px">端口号&nbsp;&nbsp;<span style="color: red;">*</span></p></strong>
+					<input type="text" name="port_num" value="" class="usr_text" id="port_num"/>
+				</div>
+
+				<button type="submit" id="btn" style="font-size: 16px;" onFocus="this.blur()">确认创建</button>
+			</form>
+		</div>
+	</body>
+</html>

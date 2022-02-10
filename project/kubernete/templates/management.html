@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bear的运维仪表盘</title>
+    <link rel="stylesheet" href="/static/css/index.css" type="text/css">
+    <style>
+        ::-webkit-scrollbar-button {
+            height: 5px;
+            width: 10px;
+            background-color:cyan;
+        }
+        ::-webkit-scrollbar-thumb{
+            border-radius: 0px;
+            box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: #555;
+        }
+
+    </style>
+    <script src="/static/js/jquery-3.6.0.js" charset="utf-8"></script>
+    <script src="/static/js/echarts.min.js" charset="utf-8"></script>
+    <script src="/static/js/manage.js" charset="utf-8"></script>
+    <script>
+        function change_host(host){
+            status = document.getElementById(host).innerHTML;
+            if(status=='True' || status=='✔'){
+                location.href='change_host/'+host;
+            }
+            else{
+                alert('This host_status is ✘');
+            }
+        }
+
+    </script>
+<body>
+    <div id="main">
+        <div id="left_menu">
+            <div id="logo">
+                <span style="width: 200px; color: #d0d0d0; font-size: 30px; position: relative; top: 25px; left: 50px; z-index: 1; font-family: 'STHupo'">
+                    Dashboard</span>
+            </div>
+            <table id="left_table">
+                <tr>
+                    <td>Menu</td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="management" onclick="location.href='management';"><a>✲<span style="margin-left: 20px">Management</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="monitor"  onclick="location.href='monitor';"><a>▦<span style="margin-left: 21px">Monitor</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="kubernetes" onclick="location.href='kuber';"><a>▞<span style="margin-left: 20px">Kubernetes</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="console" onclick="location.href='console';"><a>⌨<span style="margin-left: 13px">Console</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="log" onclick="location.href='log';"><a>◫<span style="margin-left: 22px">Log</span></a></td>
+                </tr>
+                <tr class="ch">
+                    <td class="choice" id="ftp" onclick="location.href='/backup';"><a>↺<span style="margin-left: 22px">System Backup</span></a></td>
+                </tr>
+            </table>
+        </div>
+        <div id="top_menu">
+            <table id="usr_info" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="usr_show">Host IP:<strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ host_ip }}</strong></td>
+                    <td class="usr_show">Current User:<strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ usr_name }}</strong></td>
+                    <td id="access">Can Manage:&nbsp;&nbsp;{{ usr_access }}</td>
+                    <td id="logout" onclick="location.href='/login'">LogOut</td>
+                </tr>
+            </table>
+        </div>
+        <button id="create_usr" style="position: absolute; width: 150px; height: 40px; font-size: 18px; border: 0px; cursor: pointer; margin-left: 360px; top: 105px;" onclick="location.href='register'">
+                创建用户</button>
+        <button id="create_host" style="position: absolute; width: 150px; height: 40px; font-size: 18px; border: 0px; cursor: pointer; margin-left: 550px; top: 105px;" onclick="location.href='create_host'">
+                创建主机</button>
+        <span id="title" style="color: #DAA520; top: 30px; margin-left: 30px; position: relative; font-size: 24px;">
+                <strong>管理与配置&nbsp;&nbsp;Management</strong></span>
+        <hr style="position: absolute; width: 1270px; height: 2px; background-color: black; border: 0px; top: 160px; left: 250px; box-shadow: 0px 3px 5px 2px rgba(0,0,0,0.3);">
+        <span class="name" style="position: absolute; top: 170px; left: 300px"><strong>用户名</strong></span>
+        <span class="status" style="position: absolute; top: 170px; left: 720px"><strong>活跃状态</strong></span>
+        <span class="access" style="position: absolute; top: 170px; left: 965px"><strong>管理权限</strong></span>
+        <span style="font-size: 20px; color: black; left: 270px; position: absolute; top: 170px; left: 1270px"><strong>更改</strong></span>
+        <span class="name" style="position: absolute; top: 400px; left: 300px"><strong>主机IP</strong></span>
+        <span class="name" style="position: absolute; top: 400px; left: 735px"><strong>主机名</strong></span>
+        <span class="status" style="position: absolute; top: 400px; left: 920px"><strong>当前可用情况</strong></span>
+        <span class="access" style="position: absolute; top: 400px; left: 1270px"><strong>操作</strong></span>
+        <div id="show_1" style="height: 174px; top: 205px; left: 255px; white-space: nowrap; overflow-x: hidden; overflow-y: auto; position: absolute; width: 1250px">
+            <table id="user_inf" style="border-spacing: 0px 24px">
+                {%for user in all_usr%}
+                <tr class="show_inf">
+                    <td class="name_inf"><strong>{{user.name}}</strong></td>
+                    <td class="status_inf" style="width: 275px"><strong>{{user.is_active}}</strong></td>
+                    <td class="access_inf" style="width: 5px"><strong>{{user.is_root}}</strong></td>
+                    <td class="change" onclick="location.href='manage_user/{{user.id}}'">账户管理</td>
+                    <td class="delete" onclick="location.href='delete_user?user_id={{user.id}}'" style="left: 243px">删除用户</td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div id="show_2" style="top: 450px; height: 232px; position: absolute; left: 255px; white:space: nowrap; overflow-x: hidden; overflow-y: auto; width: 1250px">
+            <table id="host_inf" style="border-spacing: 2px 20px">
+                {%for host in all_host%}
+                <tr class="show_inf">
+                    <td class="name_inf" style="left: 45px; width: 432px"><strong>{{host.host_ip}}</strong></td>
+                    <td class="status_inf" style="left: 43px; width: 300px"><strong>{{host.host_name}}</strong></td>
+                    <td class="access_inf" id="{{host.host_ip}}" style="left: 40px; width: 15px"><strong></strong></td>
+                    <td class="access_inf" style="left: 50px; width: 0px; border: 0px"><button class="refresh" onclick="get_status('{{host.host_ip}}')" style="border: 0px">↻</button></td>
+                    <td class="change_host" style="left: 90px" onclick="change_host('{{host.host_ip}}')">切换监控</td>
+                    <td class="delete" style="left: 190px" onclick="location.href='delete_host?host_ip={{host.host_ip}}'" style="left: 243px">删除主机</td>
+                </tr>
+                {%endfor%}
+                </tr>
+            </table>
+        </div>
+        <hr style="position: absolute; width: 1270px; height: 3px; background-color: black; border: 0px; top: 374px; left: 250px; box-shadow: 0px 3px 5px 2px rgba(0,0,0,0.3);">
+        <hr style="position: absolute; width: 1270px; height: 3px; background-color: black; border: 0px; top: 700px; left: 250px; box-shadow: 0px -3px 5px 5px rgba(0,0,0,0.3);">
+    </div>
+    <span id="tips" style="float: left; font-size:18px; color: #B22222; margin-top: -592px; margin-left: 1070px; user-select: none">{{TIPS}}</span>
+    <span id="error" style="font-size: 18px; color: #B22222; margin-top: -592px; float: left; margin-left: 1155px; user-select: none">{{ERROR}}</span>
+</body>
+</html>
