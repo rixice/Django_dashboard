@@ -12,8 +12,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, FileRe
 from .models import pods, services, users, name_spaces, nodes, deploys, backup_log, log_file, hosts
 from kubernetes import client, config
 
-mysql_passwd = 'bb789001'
-localhost = '192.168.111.128'
+mysql_passwd = 'MYSQL_PASSWD'
+localhost = 'LOCALHOST'
 
 
 ########################## 登录与注册 ####################################################
